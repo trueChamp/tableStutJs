@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Table Student</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script defer src="scripts.js"></script>
+    <script defer src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        label {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            position: relative;
+        }
+        
+        input {
+            margin: 3px 0 10px 0;
+        }
+        
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <form id="search" class="form filter__list">
+            <label>Фамилия:<input  id="surname" class="serch-surname" type="text" onkeyup="OpenBtn()"></label>
+            <label>Имя:<input  id="name" class="serch-name" type="text" onkeyup="OpenBtn()"></label>
+            <label>Отчество:<input  id="patronymic" class="serch-patronymic" type="text" onkeyup="OpenBtn()"></label>
+            <label>дата рождения:<input id="birth" class="serch-birth" type="date" min="01.01.1900" onkeyup="OpenBtn()"></label><br>
+            <label>год начала обучения:<input id="train" class="serch-training" type="text" min="01.01.2000" onkeyup="OpenBtn()"></label><br>
+            <label>Факультет:<input id="faculty" class="serch-faculty" type="text" onkeyup="OpenBtn()"></label>
+        </form>
+        <button id="submit" class="serch-button" disabled>Найти студента</button>
+        <table class="table" border="1" width="100%" cellpadding="5">
+            <thead class="table__head">
+                <tr class="heading">
+                    <th class="heading__name">Ф.И.О.</th>
+                    <th class="heading__faculty">Факультет</th>
+                    <th class="heading__birth">дата рождения</th>
+                    <th class="heading__training">год начала обучения</th>
+                </tr>
+            </thead>
+            <tbody class="table-wrapper">
+            </tbody>
+        </table>
+        <form id="form" class="form">
+            <label>Фамилия:<input placeholder="Иванов" pattern="^([А-Я][а-я]{3,11})$" class="inp-surname" type="text" required  oninvalid="this.setCustomValidity('Пример: Иванов')" oninput="setCustomValidity('')"></label>
+            <label>Имя:<input placeholder="Иван" pattern="^([А-Я][а-я]{3,11})$" class="inp-name" type="text"  required oninvalid="this.setCustomValidity('Пример: Иван')" oninput="setCustomValidity('')"></label>
+            <label>Отчество:<input placeholder="Иванович" pattern="^([А-Я][а-я]{3,11})$" class="inp-patronymic" type="text"  required oninvalid="this.setCustomValidity('Пример: Иванович')" oninput="setCustomValidity('')"></label><br>
+            <label>Факультет:<input pattern="^([А-Я][а-я]{3,11})$" class="inp-faculty" type="text"  required oninvalid="this.setCustomValidity('Пример: Физика')" oninput="setCustomValidity('')"></label>
+
+            <label>год начала обучения:<input class="inp-training"  type="number" min="2000" required></label><br>
+            <label>дата рождения:<input class="inp-birth" type="date" id="start" name="trip-start" value="2005-07-22" min="01.01.1900"  max="2018-12-31" required></label><br>
+
+        </form>
+        <button form="form" class="button">Добавить студента</button>
+    </div>
+    <template id="tmp">
+        <tr class="student">
+            <td class="student__name"></td>
+            <td class="student__faculty"></td>
+            <td class="student__birth"><span class="age"></span></td>
+            <td class="student__training"><span class="course"></span></td>
+        </tr>
+      </template>
+</body>
+
+</html>
